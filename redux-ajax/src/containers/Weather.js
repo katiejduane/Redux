@@ -7,8 +7,31 @@ import { connect } from 'react-redux';
 class Weather extends Component{
     render(){
         console.log(this.props.weatherData)
+        let city = '';
+        let desc = '';
+        let temp = '';
+        let humidity = '';
+        let windSpeed = '';
+
+        if(this.props.weatherData !== null){
+            console.log('hooray!')
+            city = this.props.weatherData.name;
+            desc = this.props.weatherData.weather[0].main;
+            temp = this.props.weatherData.main.temp;
+            humidity = this.props.weatherData.main.humidity;
+            windSpeed = this.props.weatherData.wind.speed;
+        }
         return(
-            <h1>Weather Component!</h1>
+            <div className="weather-shiz">
+                <h1>Weather</h1>
+                <ul>
+                    <li>City: {city} </li>
+                    <li>Looks like: {desc} </li>
+                    <li>Temperature: {temp} </li>
+                    <li>Humidty: {humidity}% </li>
+                    <li>Windspeed: {windSpeed} mph</li>
+                </ul>
+            </div>
         )
     }
 }
@@ -16,7 +39,7 @@ class Weather extends Component{
 function mapStateToProps(state){
     // always returns an object
     return{
-        weatherData: state
+        weatherData: state.weather
     }
 
 }

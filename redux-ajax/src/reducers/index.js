@@ -8,10 +8,12 @@
 import { combineReducers } from 'redux' // 1
 import weatherReducer from './weatherReducer'; // 4
 import stockReducer from './stockReducer'; // 4
+import rhymeReducer from './rhymeReducer';
 
 const rootReducer = combineReducers({ //2
     weather: weatherReducer, // 3, 4
-    stocks: stockReducer // 3, 4
+    stocks: stockReducer, // 3, 4
+    rhymes: rhymeReducer
 })
 
 export default rootReducer;

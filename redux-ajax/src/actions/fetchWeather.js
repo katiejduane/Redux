@@ -5,7 +5,7 @@ const weatherUrl = `http://api.openweathermap.org/data/2.5/weather?units=imperia
 
 // remember, action creator functions MUST return an object with a property of TYPE (may also include payload)
 function fetchWeather(zipCode){
-    console.log(zipCode);
+    // console.log(zipCode);
     const data = axios.get(weatherUrl+zipCode);
     
     return{

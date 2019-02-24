@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 // ^^ because we need the dispatcher!, we need bindActionCreators
 import { bindActionCreators } from 'redux';
 import fetchWeather from '../actions/fetchWeather';
+import fetchRhymes from '../actions/fetchRhymes';
 
 class SearchBar extends Component{
 
@@ -18,29 +19,36 @@ class SearchBar extends Component{
         this.props.fetchWeather(zipCode);
     }
 
+    handleRhymes=(e)=>{
+        e.preventDefault();
+        const word = document.getElementById('word-input').value;
+        this.props.fetchRhymes(word);
+    }
+
     render(){
         return(
             <nav className="navbar navbar-inverse">
                 <div className="container-fluid">
                     <div className="navbar-header">
-                        <a className="navbar-brand" href="#">WebSiteName</a>
+                        <a className="navbar-brand" href="horses.com">Trick-or-Treat?</a>
                     </div>
-                    <ul className="nav navbar-nav">
-                        <li className="active"><a href="#">Home</a></li>
-                        <li><a href="#">Page 1</a></li>
-                        <li><a href="#">Page 2</a></li>
-                    </ul>
                     <form onSubmit={this.handleWeather} className="navbar-form navbar-left" action="/action_page.php">
                         <div className="form-group">
                             <input id="weather-input" type="text" className="form-control" placeholder="Search for weather" />
                         </div>
-                        <button type="submit" className="btn btn-default">Submit</button>
+                        <button type="submit" className="btn btn-default">Search</button>
                     </form>
                     <form onSubmit={this.handleStocks} className="navbar-form navbar-left" action="/action_page.php">
                         <div className="form-group">
                             <input id="stock-input" type="text" className="form-control" placeholder="Search for stock" />
                         </div>
-                        <button type="submit" className="btn btn-default">Submit</button>
+                        <button type="submit" className="btn btn-default">Search</button>
+                    </form>
+                    <form onSubmit={this.handleRhymes} className="navbar-form navbar-left" action="/action_page.php">
+                        <div className="form-group">
+                            <input id="word-input" type="text" className="form-control" placeholder="Search for rhymes" />
+                        </div>
+                        <button type="submit" className="btn btn-default">Search</button>
                     </form>
                 </div>
             </nav>
@@ -50,7 +58,8 @@ class SearchBar extends Component{
 
 function mapDispatchToProps(dispatcher){
     return bindActionCreators({
-        fetchWeather: fetchWeather
+        fetchWeather: fetchWeather,
+        fetchRhymes: fetchRhymes
     }, dispatcher)
 }
 // we want to call the fetchWeather
